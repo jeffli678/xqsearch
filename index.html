@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>象棋搜索引擎</title>
+	<script type="text/javascript" src="js/tool.js"></script>
+	<script type="text/javascript" src="js/board.js"></script>
+	<script type="text/javascript" src="js/drag.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/board.css">
+</head>
+<body>
+
+<div id="board_div"></div>
+<img src="img/piece.gif" alt="点击添加棋子" id="piece_list">
+
+<div id='div_settings'>
+<label>您也可以直接输入局面FEN串：</label><br>
+<input type="text" id="board_str" name="board_pos" value="rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR w" size="72" onchange="initBoardPos(this.value)"><br>
+
+<input type="radio" name="move_side" value="red" id="red_move" class='move_side' checked onclick="updateFEN();" /><label>红先</label>
+<input type="radio" name="move_side" value="black" id="black_move" class='move_side' onclick="updateFEN();" /><label>黑先</label>
+</div>
+
+<div id="ctrl_buttons">
+<div> 
+<button class='board_ctrl' onclick="initBoardPos()">开局局面</button>
+<button class='board_ctrl' onclick="clearBoard()">清空棋子</button>
+</div><br>
+
+<div id='search_buttons'>
+<label>请点击需要搜索的数据库：</label>
+<form action="http://www.dpxq.com/hldcg/search/search.asp?" target="_blank" onsubmit="this.p.value=getbinit(document.getElementById('board_str').value);">
+	<input type="hidden" name="owner" value="大师对局" />
+	<input type="hidden" name="page" value="1" />
+	<input type="hidden" name="p" value="" />
+	<input type="submit" value="东萍对局" />
+</form>
+
+<form action="http://www.dpxq.com/hldcg/search/search.asp?" target="_blank" onsubmit="this.p.value=getbinit(document.getElementById('board_str').value);">
+	<input type="hidden" name="owner" value="棋友上传" />
+	<input type="hidden" name="page" value="1" />
+	<input type="hidden" name="p" value="" />
+	<input type="submit" value="东萍排局" />
+</form>
+
+<button onclick="var el=document.getElementById('Engame_link');el.href='http://lpforth.forthfreak.net/xiangqi-js/xiangqi.htm?'+SFentoPFen(document.getElementById('board_str').value);el.click();"><a id="Engame_link" href="" target="_blank"></a>搜残局库</button>
+
+<br>
+<button onclick="var el=document.getElementById('cloud_link');el.href='http://www.chessdb.cn/?'+document.getElementById('board_str').value;el.click();"><a id="cloud_link" href="" target="_blank"></a>搜云库</button>
+</div>
+</div>
+
+<img src="" width="51" height="51" id="dragimg">
+
+</body>
+
+</html>
