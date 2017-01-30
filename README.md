@@ -1,2 +1,2 @@
 # xqsearch
-search xiangqi games
+Search xiangqi games
